@@ -31,10 +31,12 @@ a {
 }
 
 :root {
-	--black: "#3B434E";
-	--white: "white";
-	--primary: "#7653FC";
-	--red: "#FC836D";
-	--green: "#1DC37E";
-	--light-green: "#1DC37E";
+	--black: #3B434E;
+	--light-gray: #EBEBEB;
+	--white: white;
+	--primary: #7653FC;
+	--primary-hover: #5221FF;
+	--red: #FC836D;
+	--green: #1DC37E;
+	--light-green: #1DC37E;
 }
