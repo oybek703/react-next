@@ -3,8 +3,12 @@ import {PTagProps} from './PTag.props'
 import styles from './PTag.module.css'
 import classNames from 'classnames'
 
-const HTag = ({size, children}: PTagProps): JSX.Element => {
-    return <p className={classNames(styles.p)}>{children}</p>
+const PTag = ({size = 'medium', children}: PTagProps): JSX.Element => {
+    return <p className={classNames(styles.p, {
+        [styles.small]: size === 'small',
+        [styles.medium]: size === 'medium',
+        [styles.large]: size === 'large'
+    })}>{children}</p>
 }
 
-export default HTag
+export default PTag
