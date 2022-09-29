@@ -6,8 +6,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <HTag tag='h3'>This is HTag children</HTag>
-        <Button appereance='primary'>Click</Button>
-        <Button appereance='ghost'>Click</Button>
+        <Button arrow='right' appereance='primary'>Click</Button>
+        <Button arrow='down' appereance='ghost'>Click</Button>
     </div>
   )
 }
