@@ -5,7 +5,6 @@ import classNames from 'classnames'
 import ArrowIcon from './arrow.svg'
 
 const Button = ({appereance, children, arrow = 'none', className, ...props}: ButtonProps): JSX.Element => {
-    console.log(typeof ArrowIcon)
     return <button className={classNames(styles.button, className, {
         [styles.primary]: appereance === 'primary',
         [styles.ghost]: appereance === 'ghost'
