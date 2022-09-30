@@ -1,7 +1,9 @@
 import type {NextPage} from 'next'
-import {Button, HTag, PTag, Tag} from '../components'
+import {Button, HTag, PTag, Rating, Tag} from '../components'
+import {useState} from 'react'
 
 const Home: NextPage = () => {
+    const [rating, setRating] = useState<number>(2)
     return (
         <>
             <HTag tag="h3">This is HTag children</HTag>
@@ -15,6 +17,7 @@ const Home: NextPage = () => {
             <Tag color='red'>Ghost</Tag>
             <Tag color='green'>Ghost</Tag>
             <Tag size='small' color='primary'>Ghost</Tag>
+            <Rating editable setRating={setRating} rating={rating}/>
         </>
     )
 }
