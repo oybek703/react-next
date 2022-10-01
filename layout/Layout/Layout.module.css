@@ -3,15 +3,20 @@
 
 	min-height: 100vh;
 	grid-template:
-		". header header ." auto
-		". sidebar body ." 1fr
-		"footer footer footer footer" auto
-		/ auto 230px minmax(320px, 1200px) auto;
+		". header header ."
+		". sidebar body ."
+		"footer footer footer footer";
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: auto 230px minmax(320px, 1200px) auto;
 }
 
 .header {
 	grid-area: header;
+
+	display: none;
 	justify-self: center;
+
+	align-self: center;
 }
 
 .body {
@@ -28,4 +33,22 @@
 .footer {
 	grid-area: footer;
 	justify-self: center;
+}
+
+@media (max-width: 765px) {
+	.wrapper {
+		grid-template:
+			"header"
+			"body"
+			"footer";
+		grid-template-columns: minmax(320px, 1fr);
+	}
+
+	.sidebar {
+		display: none;
+	}
+
+	.header {
+		display: block;
+	}
 }
