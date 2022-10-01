@@ -2,6 +2,7 @@
 	display: grid;
 
 	min-height: 100vh;
+	gap: 0 30px;
 	grid-template:
 		". header header ."
 		". sidebar body ."
@@ -32,7 +33,6 @@
 
 .footer {
 	grid-area: footer;
-	justify-self: center;
 }
 
 @media (max-width: 765px) {

@@ -1,0 +1,29 @@
+.footer {
+	display: grid;
+	grid-template: "copyright agreement terms";
+	grid-template-columns: 1fr auto auto;
+	gap: 40px;
+
+	padding: 23px 30px;
+
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.footer p {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.copyright {
+	grid-area: copyright;
+}
+
+.agreement {
+	grid-area: agreement;
+}
+
+.terms {
+	grid-area: terms;
+}
