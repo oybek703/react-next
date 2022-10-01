@@ -15,9 +15,6 @@
 	grid-area: header;
 
 	display: none;
-	justify-self: center;
-
-	align-self: center;
 }
 
 .body {
@@ -26,9 +23,6 @@
 
 .sidebar {
 	grid-area: sidebar;
-	justify-self: center;
-
-	align-self: center;
 }
 
 .footer {
@@ -41,6 +35,7 @@
 			"header"
 			"body"
 			"footer";
+		grid-template-rows: auto 1fr auto;
 		grid-template-columns: minmax(320px, 1fr);
 	}
 
