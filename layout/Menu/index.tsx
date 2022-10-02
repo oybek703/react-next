@@ -1,45 +1,29 @@
 import React, {useContext} from 'react'
 import {AppContext} from '../../context/app.context'
 import {FirstLevelMenuItem, PageItem} from '../../interfaces/menu.interface'
-import CoursesIcon from './icons/courses.svg'
-import ServicesIcon from './icons/services.svg'
-import BooksIcon from './icons/books.svg'
-import ProductsIcon from './icons/products.svg'
-import {TopLevelCategory} from '../../interfaces/page.interface'
 import styles from './Menu.module.css'
 import classNames from 'classnames'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import marco from 'styled-jsx/marco'
-
-const firstLevelMenu: FirstLevelMenuItem[] = [
-    {route: 'courses', name: 'Courses', icon: <CoursesIcon/>, id: TopLevelCategory.Courses},
-    {route: 'services', name: 'Services', icon: <ServicesIcon/>, id: TopLevelCategory.Services},
-    {route: 'books', name: 'Books', icon: <BooksIcon/>, id: TopLevelCategory.Books},
-    {route: 'products', name: 'Products', icon: <ProductsIcon/>, id: TopLevelCategory.Products}
-
-
-]
+import {firstLevelMenu} from '../../helpers'
 
 export const Menu = (): JSX.Element => {
     const {menu, firstCategory, setMenu} = useContext(AppContext)
     const router = useRouter()
-
     const setSecondLevel = (secondCategory: string) => {
-      setMenu && setMenu(menu.map(menuItem => {
-          if (menuItem._id.secondCategory === secondCategory) {
-              menuItem.opened = !menuItem.opened
-          }
-          return menuItem
-      }))
+        setMenu && setMenu(menu.map(menuItem => {
+            if (menuItem._id.secondCategory === secondCategory) {
+                menuItem.opened = !menuItem.opened
+            }
+            return menuItem
+        }))
     }
-
     const buildFirstLevel = () => {
         return (
             <>
                 {firstLevelMenu.map(firstLevelMenu => (<div key={firstLevelMenu.route}>
                     <Link href={`/${firstLevelMenu.route}`}>
-                        <a >
+                        <a>
                             <div className={classNames(styles.firstLevel, {
                                 [styles.firstLevelActive]: firstLevelMenu.id === firstCategory
                             })}>
@@ -53,7 +37,6 @@ export const Menu = (): JSX.Element => {
             </>
         )
     }
-
     const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
         return (
             <div className={styles.secondBlock}>
@@ -62,8 +45,9 @@ export const Menu = (): JSX.Element => {
                         m.opened = true
                     }
                     return (
-                        <div key={m._id.secondCategory} onClick={() => setSecondLevel(m._id.secondCategory)}>
-                            <div className={styles.secondLevel}>{m._id.secondCategory}</div>
+                        <div key={m._id.secondCategory}>
+                            <div onClick={() => setSecondLevel(m._id.secondCategory)}
+                                 className={styles.secondLevel}>{m._id.secondCategory}</div>
                             <div className={classNames(styles.secondLevelBlock, {
                                 [styles.secondLevelBlockOpened]: m.opened
                             })}>
@@ -81,8 +65,8 @@ export const Menu = (): JSX.Element => {
                 {pages.map(page =>
                     <Link key={page._id} href={`/${route}/${page.alias}`}>
                         <a className={classNames(styles.thirdLevel, {
-                               [styles.thirdLevelActive]: false
-                           })}>
+                            [styles.thirdLevelActive]: router.asPath.split('/')[2] === page.alias
+                        })}>
                             {page.category}
                         </a>
                     </Link>
