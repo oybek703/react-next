@@ -25,7 +25,7 @@ export const Menu = (): JSX.Element => {
             <>
                 {firstLevelMenu.map(firstLevelMenu => (<div key={firstLevelMenu.route}>
                     <a href={`/${firstLevelMenu.route}`}>
-                        <div className={classNames(styles.menu, {
+                        <div className={classNames(styles.firstLevel, {
                             [styles.firstLevelActive]: firstLevelMenu.id === firstCategory
                         })}>
                             {firstLevelMenu.icon}
@@ -40,7 +40,7 @@ export const Menu = (): JSX.Element => {
 
     const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
         return (
-            <>
+            <div className={styles.secondBlock}>
                 {menu.map(m => (<div key={m._id.secondCategory}>
                     <div className={styles.secondLevel}>{m._id.secondCategory}</div>
                     <div className={classNames(styles.secondLevelBlock, {
@@ -49,7 +49,7 @@ export const Menu = (): JSX.Element => {
                         {buildThirdLevel(m.pages, menuItem.route)}
                     </div>
                 </div>))}
-            </>
+            </div>
         )
     }
     const buildThirdLevel = (pages: PageItem[], route: string) => {
@@ -58,7 +58,7 @@ export const Menu = (): JSX.Element => {
                 {pages.map(page =>
                     <a key={page._id} href={`/${route}/${page.alias}`}
                        className={classNames(styles.thirdLevel, {
-                           [styles.thirdLevelActive]: true
+                           [styles.thirdLevelActive]: false
                        })}>
                         {page.category}
                     </a>)
