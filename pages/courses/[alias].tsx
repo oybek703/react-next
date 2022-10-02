@@ -1,50 +1,63 @@
-import type {GetStaticProps} from 'next'
-import {useState} from 'react'
+import type {GetStaticPaths, GetStaticProps, GetStaticPropsContext} from 'next'
 import axios from 'axios'
-import {Button, HTag, PTag, Rating, Tag} from '../../components'
 import {withLayout} from '../../layout'
 import {MenuItem} from '../../interfaces/menu.interface'
+import {TopPageModel} from '../../interfaces/page.interface'
+import {ParsedUrlQuery} from 'querystring'
+import {ProductModel} from '../../interfaces/product.interface'
 
-function Course({menu, firstCategory}: CourseProps): JSX.Element {
-    const [rating, setRating] = useState<number>(2)
+const firstCategory = 0
+
+function Course({menu, page, products}: CourseProps): JSX.Element {
     return (
         <>
-            <HTag tag="h3">This is HTag children</HTag>
-            <Button arrow="right" appereance="primary">Click</Button>
-            <Button arrow="down" appereance="ghost">Click</Button>
-            <PTag size='small'>Small</PTag>
-            <PTag>Medium</PTag>
-            <PTag size='large'>Large</PTag>
-            <Tag size='medium' color='grey'>Ghost</Tag>
-            <Tag>Ghost</Tag>
-            <Tag color='red'>Ghost</Tag>
-            <Tag color='green'>Ghost</Tag>
-            <Tag size='small' color='primary'>Ghost</Tag>
-            <Rating editable setRating={setRating} rating={rating}/>
-            <ul>
-                {menu.map(item => <li key={item._id.secondCategory}>{item._id.secondCategory}</li>)}
-            </ul>
+            {products && products.length}
         </>
     )
 }
 
 export default withLayout(Course)
 
-export const getStaticProps: GetStaticProps<CourseProps> = async () => {
-    const firstCategory = 0
+export const getStaticPaths: GetStaticPaths = async () => {
+    const {data: menu} = await axios.post<MenuItem[]>(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
+        {firstCategory}
+    )
+    return {
+        paths: menu.flatMap(m => m.pages.map(p => `/courses/${p.alias}`)),
+        fallback: true
+    }
+}
 
-    const {data: menu} = await axios.post<MenuItem[]>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`, {
-        firstCategory
+export const getStaticProps: GetStaticProps<CourseProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
+    if (!params) {
+        return {
+            notFound: true
+        }
+    }
+    const {data: menu} = await axios.post<MenuItem[]>(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`,
+        {firstCategory}
+    )
+
+    const {data: page} = await axios.get<TopPageModel>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/byAlias/${params.alias}`)
+    const {data: products} = await axios.post<ProductModel[]>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/product/find`, {
+        category: page.category,
+        limit: 10
     })
     return {
         props: {
             menu,
-            firstCategory
+            firstCategory,
+            page,
+            products
         }
     }
 }
 
-interface CourseProps extends Record<string, unknown>{
-    menu: MenuItem[]
+interface CourseProps extends Record<string, unknown> {
     firstCategory: number
+    menu: MenuItem[]
+    page: TopPageModel
+    products: ProductModel[]
 }
