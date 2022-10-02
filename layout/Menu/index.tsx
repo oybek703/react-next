@@ -8,6 +8,7 @@ import ProductsIcon from './icons/products.svg'
 import {TopLevelCategory} from '../../interfaces/page.interface'
 import styles from './Menu.module.css'
 import classNames from 'classnames'
+import Link from 'next/link'
 
 const firstLevelMenu: FirstLevelMenuItem[] = [
     {route: 'courses', name: 'Courses', icon: <CoursesIcon/>, id: TopLevelCategory.Courses},
@@ -24,14 +25,16 @@ export const Menu = (): JSX.Element => {
         return (
             <>
                 {firstLevelMenu.map(firstLevelMenu => (<div key={firstLevelMenu.route}>
-                    <a href={`/${firstLevelMenu.route}`}>
-                        <div className={classNames(styles.firstLevel, {
-                            [styles.firstLevelActive]: firstLevelMenu.id === firstCategory
-                        })}>
-                            {firstLevelMenu.icon}
-                            <span>{firstLevelMenu.name}</span>
-                        </div>
-                    </a>
+                    <Link href={`/${firstLevelMenu.route}`}>
+                        <a >
+                            <div className={classNames(styles.firstLevel, {
+                                [styles.firstLevelActive]: firstLevelMenu.id === firstCategory
+                            })}>
+                                {firstLevelMenu.icon}
+                                <span>{firstLevelMenu.name}</span>
+                            </div>
+                        </a>
+                    </Link>
                     {firstLevelMenu.id === firstCategory && buildSecondLevel(firstLevelMenu)}
                 </div>))}
             </>
@@ -56,12 +59,14 @@ export const Menu = (): JSX.Element => {
         return (
             <>
                 {pages.map(page =>
-                    <a key={page._id} href={`/${route}/${page.alias}`}
-                       className={classNames(styles.thirdLevel, {
-                           [styles.thirdLevelActive]: false
-                       })}>
-                        {page.category}
-                    </a>)
+                    <Link key={page._id} href={`/${route}/${page.alias}`}>
+                        <a className={classNames(styles.thirdLevel, {
+                               [styles.thirdLevelActive]: false
+                           })}>
+                            {page.category}
+                        </a>
+                    </Link>
+                )
                 }
             </>
         )
