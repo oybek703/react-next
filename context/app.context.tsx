@@ -19,6 +19,6 @@ export const AppContextProvider = ({children, menu, firstCategory}: IAppContext 
         setManuState(newMenu)
     }
     return <AppContext.Provider value={{menu: menuState, firstCategory, setMenu}}>
-        {children}  
+        {children}
     </AppContext.Provider>
 }
