@@ -9,6 +9,8 @@ import {TopLevelCategory} from '../../interfaces/page.interface'
 import styles from './Menu.module.css'
 import classNames from 'classnames'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
+import marco from 'styled-jsx/marco'
 
 const firstLevelMenu: FirstLevelMenuItem[] = [
     {route: 'courses', name: 'Courses', icon: <CoursesIcon/>, id: TopLevelCategory.Courses},
@@ -21,6 +23,17 @@ const firstLevelMenu: FirstLevelMenuItem[] = [
 
 export const Menu = (): JSX.Element => {
     const {menu, firstCategory, setMenu} = useContext(AppContext)
+    const router = useRouter()
+
+    const setSecondLevel = (secondCategory: string) => {
+      setMenu && setMenu(menu.map(menuItem => {
+          if (menuItem._id.secondCategory === secondCategory) {
+              menuItem.opened = !menuItem.opened
+          }
+          return menuItem
+      }))
+    }
+
     const buildFirstLevel = () => {
         return (
             <>
@@ -44,14 +57,21 @@ export const Menu = (): JSX.Element => {
     const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
         return (
             <div className={styles.secondBlock}>
-                {menu.map(m => (<div key={m._id.secondCategory}>
-                    <div className={styles.secondLevel}>{m._id.secondCategory}</div>
-                    <div className={classNames(styles.secondLevelBlock, {
-                        [styles.secondLevelBlockOpened]: m.opened
-                    })}>
-                        {buildThirdLevel(m.pages, menuItem.route)}
-                    </div>
-                </div>))}
+                {menu.map(m => {
+                    if (m.pages.map(({alias}) => alias).includes(router.asPath.split('/')[2])) {
+                        m.opened = true
+                    }
+                    return (
+                        <div key={m._id.secondCategory} onClick={() => setSecondLevel(m._id.secondCategory)}>
+                            <div className={styles.secondLevel}>{m._id.secondCategory}</div>
+                            <div className={classNames(styles.secondLevelBlock, {
+                                [styles.secondLevelBlockOpened]: m.opened
+                            })}>
+                                {buildThirdLevel(m.pages, menuItem.route)}
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         )
     }
