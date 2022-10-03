@@ -7,7 +7,7 @@ import {format} from 'date-fns'
 export const Footer = ({children, className, ...props}: FooterProps): JSX.Element => {
     return <footer className={classNames(className, styles.footer)}>
         <div>
-            OwlTop © 2021 - {format(new Date(), 'yyyy')} Все права защищены
+            YoTop © 2021 - {format(new Date(), 'yyyy')} Все права защищены
         </div>
         <a href='#' target='_blank'>
             Пользовательское соглашение

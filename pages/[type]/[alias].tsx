@@ -7,10 +7,10 @@ import {ProductModel} from '../../interfaces/product.interface'
 import {firstLevelMenu} from '../../helpers'
 import {TopPage} from '../../pageComponents'
 
-function Alias({products, firstCategory, menu}: AliasProps): JSX.Element {
+function Alias({products, firstCategory, page}: AliasProps): JSX.Element {
     return (
         <>
-            <TopPage firstCategory={firstCategory} menu={menu} products={products}/>
+            <TopPage firstCategory={firstCategory} page={page} products={products}/>
         </>
     )
 }
