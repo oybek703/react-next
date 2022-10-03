@@ -3,7 +3,6 @@ import axios from 'axios'
 import {withLayout} from '../../layout'
 import {MenuItem} from '../../interfaces/menu.interface'
 import {TopLevelCategory, TopPageModel} from '../../interfaces/page.interface'
-import {ParsedUrlQuery} from 'querystring'
 import {ProductModel} from '../../interfaces/product.interface'
 import {firstLevelMenu} from '../../helpers'
 
@@ -32,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps<AliasProps> = async ({params}: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<AliasProps> = async ({params}: GetStaticPropsContext) => {
     if (!params) {
         return {
             notFound: true

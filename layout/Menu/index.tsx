@@ -76,9 +76,7 @@ export const Menu = (): JSX.Element => {
         )
     }
     return <div>
-        <ul>
-            {buildFirstLevel()}
-        </ul>
+        {buildFirstLevel()}
     </div>
 }
 
