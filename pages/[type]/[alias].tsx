@@ -5,11 +5,12 @@ import {MenuItem} from '../../interfaces/menu.interface'
 import {TopLevelCategory, TopPageModel} from '../../interfaces/page.interface'
 import {ProductModel} from '../../interfaces/product.interface'
 import {firstLevelMenu} from '../../helpers'
+import {TopPage} from '../../pageComponents'
 
-function Alias({products}: AliasProps): JSX.Element {
+function Alias({products, firstCategory, menu}: AliasProps): JSX.Element {
     return (
         <>
-            {products && products.length}
+            <TopPage firstCategory={firstCategory} menu={menu} products={products}/>
         </>
     )
 }
