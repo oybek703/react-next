@@ -2,6 +2,7 @@ import React from 'react'
 import {TopPageProps} from './TopPage.props'
 import styles from './TopPage.module.css'
 import {HhData, HTag, Tag} from '../../components'
+import {TopLevelCategory} from '../../interfaces/page.interface'
 
 export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Element => {
     return <div className={styles.wrapper}>
@@ -17,7 +18,7 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
             <HTag tag={'h2'}>Вакансии - {page.category}</HTag>
             <Tag color="red">hh.ru</Tag>
         </div>
-        <HhData {...page.hh} />
+        {firstCategory === TopLevelCategory.Courses && <HhData {...page.hh} />}
     </div>
 }
 
