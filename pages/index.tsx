@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {withLayout} from '../layout'
 import axios from 'axios'
 import {MenuItem} from '../interfaces/menu.interface'
+import {TextArea} from '../components/TextArea/TextArea'
 
 function Home({menu, firstCategory}: HomeProps): JSX.Element {
     const [rating, setRating] = useState<number>(3)
@@ -22,6 +23,8 @@ function Home({menu, firstCategory}: HomeProps): JSX.Element {
             <Tag size="small" color="primary">Ghost</Tag>
             <Rating editable setRating={setRating} rating={rating}/>
             <Input/>
+            <hr/>
+            <TextArea/>
         </>
     )
 }
