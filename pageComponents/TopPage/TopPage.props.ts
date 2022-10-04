@@ -4,5 +4,5 @@ import {ProductModel} from '../../interfaces/product.interface'
 export interface TopPageProps {
     firstCategory: TopLevelCategory
     page: TopPageModel
-    products?: ProductModel[]
+    products: ProductModel[]
 }
