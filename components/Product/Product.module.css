@@ -47,3 +47,44 @@
 .advBlock {
 	grid-column: middle / end;
 }
+
+.logo img {
+	border-radius: 5px;
+}
+
+.title {
+	align-self: flex-end;
+
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 27px;
+}
+
+.oldPrice {
+	margin-left: 4px;
+}
+
+.month {
+	line-height: 19px;
+	font-size: 14px;
+}
+
+.price,
+.credit,
+.rating {
+	align-self: flex-end;
+
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 27px;
+}
+
+.priceTitle,
+.creditTitle,
+.rateTitle {
+	margin-top: 10px;
+
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 19px;
+}
