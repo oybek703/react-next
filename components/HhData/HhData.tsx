@@ -10,7 +10,9 @@ export const HhData = ({count, juniorSalary, middleSalary, seniorSalary}: HhData
     return <div className={classNames(styles.hh)}>
         <Card className={styles.count}>
             <div className={styles.title}>Всего вакансий</div>
-            <div className={styles.countValue}>{count}</div>
+            <div className={styles.countValue}>{
+                count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+            }</div>
         </Card>
         <Card className={styles.salary}>
             <div>

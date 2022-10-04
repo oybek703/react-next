@@ -7,10 +7,6 @@
 	gap: 20px;
 }
 
-.wrapper {
-	margin-top: 40px;
-}
-
 .hhTitle {
 	display: grid;
 	grid-template-columns: auto 1fr;
@@ -18,4 +14,32 @@
 
 	align-items: baseline;
 	justify-items: left;
+}
+
+.seo h1 {
+	margin: 0;
+
+	font-size: 26px;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 35px;
+}
+
+.seo h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
+
+	font-size: 22px;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 30px;
+}
+
+.seo h3 {
+	margin: 0;
+
+	font-size: 20px;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 27px;
 }
