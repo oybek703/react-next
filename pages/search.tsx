@@ -1,6 +1,6 @@
 import {withLayout} from '../layout'
 
-function Search(): JSX.Element {
+function SearchPage(): JSX.Element {
     return (
         <>
             <label htmlFor="search">Search</label>
@@ -9,6 +9,6 @@ function Search(): JSX.Element {
     )
 }
 
-export default withLayout(Search)
+export default withLayout(SearchPage)
 
 

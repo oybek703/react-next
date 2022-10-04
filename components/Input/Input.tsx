@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 export const Input = ({className, ...props}: InputProps): JSX.Element => {
     return (
-        <input placeholder='Имя'
+        <input
             type="text"
                className={classNames(className, styles.input)} {...props}/>
     )

@@ -1,10 +1,9 @@
 import type {GetStaticProps} from 'next'
-import {Button, HTag, Input, PTag, Rating, Tag} from '../components'
+import {Button, HTag, Input, PTag, Rating, Tag, TextArea} from '../components'
 import {useState} from 'react'
 import {withLayout} from '../layout'
 import axios from 'axios'
 import {MenuItem} from '../interfaces/menu.interface'
-import {TextArea} from '../components/TextArea/TextArea'
 
 function Home({menu, firstCategory}: HomeProps): JSX.Element {
     const [rating, setRating] = useState<number>(3)
@@ -22,9 +21,9 @@ function Home({menu, firstCategory}: HomeProps): JSX.Element {
             <Tag color="green">Ghost</Tag>
             <Tag size="small" color="primary">Ghost</Tag>
             <Rating editable setRating={setRating} rating={rating}/>
-            <Input/>
+            <Input placeholder='Имя'/>
             <hr/>
-            <TextArea/>
+            <TextArea placeholder='Текст отзыва'/>
         </>
     )
 }
