@@ -1,15 +1,16 @@
 import React from 'react'
 import {TopPageProps} from './TopPage.props'
 import styles from './TopPage.module.css'
-import {Advantages, HhData, HTag, Tag} from '../../components'
+import {Advantages, HhData, HTag, Sort, Tag} from '../../components'
 import {TopLevelCategory} from '../../interfaces/page.interface'
+import {SortEnum} from '../../components/Sort/Sort.props'
 
 export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Element => {
     return <div className={styles.wrapper}>
         <div className={styles.title}>
             <HTag tag={'h1'}>{page.title}</HTag>
             <Tag size="medium" color="grey">{products?.length}</Tag>
-            <span>Сортировка</span>
+            <Sort sort={SortEnum.Rating} setSort={() => {}}/>
             <div>
                 {products?.map(p => <div key={p._id}>{p.title}</div>)}
             </div>
