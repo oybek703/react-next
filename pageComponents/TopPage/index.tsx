@@ -7,7 +7,13 @@ import {SortEnum} from '../../components/Sort/Sort.props'
 import {sortReducer} from '../../components/Sort/sortReducer'
 
 export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Element => {
-    const [{sort, products: sortedProducts}, dispatchSort] = useReducer(sortReducer,  {sort: SortEnum.Rating, products})
+    const [{sort, products: sortedProducts}, dispatchSort] = useReducer(
+        sortReducer,
+        {
+            sort: SortEnum.Rating,
+            products: products.sort((a, b) => b.initialRating - a.initialRating)
+        }
+    )
     function setSort(sort: SortEnum) {
         dispatchSort({type: sort})
     }
