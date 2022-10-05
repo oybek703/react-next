@@ -61,12 +61,20 @@
 }
 
 .oldPrice {
+	margin-bottom: 0;
 	margin-left: 4px;
 }
 
 .month {
-	line-height: 19px;
 	font-size: 14px;
+	line-height: 19px;
+}
+
+.price {
+	display: grid;
+	grid-auto-flow: column;
+
+	align-items: flex-end;
 }
 
 .price,
