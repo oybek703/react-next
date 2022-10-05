@@ -40,7 +40,14 @@ export const Product = ({product}: ProductProps): JSX.Element => {
         </div>
         <Divider className={styles.hr}/>
         <div className={styles.description}>{product.description}</div>
-        <div className={styles.feature}>фичи</div>
+        <div className={styles.feature}>
+            {product.characteristics.map(characteristic => (<div
+                key={characteristic.name} className={styles.characteristics}>
+                <span className={styles.characteristicsName}>{characteristic.name}</span>
+                <span className={styles.characteristicsDots}/>
+                <span className={styles.characteristicsValue}>{characteristic.value}</span>
+            </div>))}
+        </div>
         <div className={styles.advBlock}>
             {product.advantages && <div className={styles.advantages}>
                 <div className={styles.advTitle}>Преимущества</div>

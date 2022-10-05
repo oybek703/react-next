@@ -72,10 +72,11 @@
 }
 
 .advTitle {
+	margin-bottom: 5px;
+
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 22px;
-	margin-bottom: 5px;
 }
 
 .logo img {
@@ -129,4 +130,27 @@
 
 .reviewButton {
 	margin-left: 20px;
+}
+
+.characteristics {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+
+	align-items: baseline;
+
+	padding-right: 60px;
+
+	font-size: 16px;
+	line-height: 32px;
+	gap: 10px;
+}
+
+.characteristicsName {
+	font-weight: 700;
+}
+
+.characteristicsDots {
+	align-self: center;
+
+	border-bottom: 1px dashed var(--gray);
 }
