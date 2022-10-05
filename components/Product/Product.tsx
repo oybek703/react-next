@@ -7,6 +7,7 @@ import {Rating} from '../Rating/Rating'
 import {Tag} from '../Tag/Tag'
 import {Button} from '../Button/Button'
 import {priceRu} from '../../helpers'
+import {Divider} from '../Divider/Divider'
 
 export const Product = ({product}: ProductProps): JSX.Element => {
     return <Card className={classNames(styles.product)}>
@@ -18,7 +19,9 @@ export const Product = ({product}: ProductProps): JSX.Element => {
         <div className={styles.title}>{product.title}</div>
         <div className={styles.price}>
             <span>{priceRu(product.price)}</span>
-            {product.oldPrice && <Tag color='green' size='small' className={styles.oldPrice}>{priceRu(product.price - product.oldPrice)}</Tag>}
+            {product.oldPrice && <Tag color='green' size='small' className={styles.oldPrice}>
+                {priceRu(product.price - product.oldPrice)}
+            </Tag>}
         </div>
         <div className={styles.credit}>
             {priceRu(product.credit)}/<span className={styles.month}>мес</span>
@@ -32,27 +35,23 @@ export const Product = ({product}: ProductProps): JSX.Element => {
         <div className={styles.priceTitle}>цена</div>
         <div className={styles.creditTitle}>кредит</div>
         <div className={styles.rateTitle}>{product.reviewCount} отзывов</div>
-        <div className={styles.hr}>
-            <hr/>
-        </div>
+        <Divider className={styles.hr}/>
         <div className={styles.description}>{product.description}</div>
         <div className={styles.feature}>фичи</div>
         <div className={styles.advBlock}>
-            <div className={styles.advantages}>
-                <div>Преимущества</div>
+            {product.advantages && <div className={styles.advantages}>
+                <div className={styles.advTitle}>Преимущества</div>
                 <div>{product.advantages}</div>
-            </div>
-            <div className={styles.disadvantages}>
-                <div>Недостатки</div>
+            </div>}
+            {product.disadvantages && <div className={styles.disadvantages}>
+                <div className={styles.advTitle}>Недостатки</div>
                 <div>{product.disadvantages}</div>
-            </div>
+            </div>}
         </div>
-        <div className={styles.hr}>
-            <hr/>
-        </div>
+        <Divider className={styles.hr}/>
         <div className={styles.actions}>
             <Button appereance="primary">Узнать подробнее</Button>
-            <Button appereance="ghost" arrow="right">Читать отзывы</Button>
+            <Button appereance="ghost" arrow="right" className={styles.reviewButton}>Читать отзывы</Button>
         </div>
     </Card>
 }
