@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, {useEffect, useReducer} from 'react'
 import {TopPageProps} from './TopPage.props'
 import styles from './TopPage.module.css'
 import {Advantages, HhData, HTag, Product, Sort, Tag} from '../../components'
@@ -14,9 +14,16 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
             products: products.sort((a, b) => b.initialRating - a.initialRating)
         }
     )
+
+    useEffect(() => {
+        dispatchSort({type: 'RESET', payload: {sort: sort, products: products}})
+        // eslint-disable-next-line
+    }, [products])
+
     function setSort(sort: SortEnum) {
         dispatchSort({type: sort})
     }
+
     return <div className={styles.wrapper}>
         <div className={styles.title}>
             <HTag tag={'h1'}>{page.title}</HTag>
@@ -25,14 +32,14 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
         </div>
         {sortedProducts?.map(p => <Product product={p} key={p._id}/>)}
         <div className={styles.hhTitle}>
-            <HTag tag='h2'>Вакансии - {page.category}</HTag>
+            <HTag tag="h2">Вакансии - {page.category}</HTag>
             <Tag color="red">hh.ru</Tag>
         </div>
         {firstCategory === TopLevelCategory.Courses && <HhData {...page.hh} />}
         {page.advantages && page.advantages.length > 0 && <Advantages advantages={page.advantages}/>}
         {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{__html: page.seoText}}/>}
-        <HTag tag='h2'>Получаемые навыки</HTag>
-        {page.tags.map(tag => <Tag color='primary' key={tag}>{tag}</Tag>)}
+        <HTag tag="h2">Получаемые навыки</HTag>
+        {page.tags.map(tag => <Tag color="primary" key={tag}>{tag}</Tag>)}
     </div>
 }
 
