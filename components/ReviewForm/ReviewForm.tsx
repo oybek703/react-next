@@ -22,28 +22,30 @@ export const ReviewForm = ({productId, className, ...props}: ReviewFormProps): J
             <Input
                 error={errors.name}
                 {...register('name', {required: {value: true, message: 'Заполните имя!'}})}
-                placeholder='Имя'/>
+                placeholder="Имя"/>
             <Input
                 error={errors.title}
                 {...register('title', {required: {value: true, message: 'Заполните заголовок!'}})}
                 className={styles.title}
-                placeholder='Заголовок отзыва'/>
+                placeholder="Заголовок отзыва"/>
             <div className={styles.rating}>
                 <span>Оценка:</span>
                 <Controller
                     control={control}
+                    rules={{required: {value: true, message: 'Выберите рейтинг!'}}}
                     render={({field: {value, onChange, ref}}) =>
                         <Rating rating={value}
                                 ref={ref}
+                                error={errors.rating}
                                 editable setRating={onChange}/>}
-                    name='rating'/>
+                    name="rating"/>
             </div>
             <TextArea error={errors.description}
-                {...register('description', {required: {value: true, message: 'Заполните описание!'}})}
+                      {...register('description', {required: {value: true, message: 'Заполните описание!'}})}
                       className={styles.description}
-                      placeholder='Текст отзыва'/>
+                      placeholder="Текст отзыва"/>
             <div className={styles.submit}>
-                <Button appereance='primary'>Отправить</Button>
+                <Button appereance="primary">Отправить</Button>
                 <span
                     className={styles.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
             </div>
