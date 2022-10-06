@@ -16,12 +16,15 @@
 }
 
 .error svg {
-	stroke: var(--red)
+	stroke: var(--red);
 }
 
 .errorMessage {
 	position: absolute;
-	bottom: -20px;
-	left: 0;
+	bottom: -22px;
+	left: -80px;
+
+	white-space: nowrap;
+
 	color: var(--red);
 }

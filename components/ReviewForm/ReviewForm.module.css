@@ -25,21 +25,31 @@
 	margin-left: 15px;
 }
 
-.success {
+.panel {
 	position: relative;
 
 	padding: 20px;
 
 	border-radius: 5px;
-	background-color: var(--light-green);
 	grid-column: start / end;
+}
+
+.success {
+	background-color: var(--light-green);
+}
+
+.error {
+	background-color: var(--light-red);
 }
 
 .success span {
 	color: var(--green);
 }
 
-.successTitle {
+.successTitle,
+.errorTitle {
+	margin-bottom: 2px;
+
 	font-weight: bold;
 }
 
@@ -49,6 +59,10 @@
 	right: 20px;
 
 	cursor: pointer;
+}
+
+.error path {
+	stroke: var(--red);
 }
 
 @media screen and (max-width: 1200px) {
