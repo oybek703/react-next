@@ -1,10 +1,10 @@
-import React, {Fragment, useEffect, useState, KeyboardEvent} from 'react'
+import React, {Fragment, useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef} from 'react'
 import {RatingProps} from './Rating.props'
 import StarIcon from './star.svg'
 import styles from './Rating.module.css'
 import classNames from 'classnames'
 
-export const Rating = ({editable = false, rating, setRating, ...props}: RatingProps): JSX.Element => {
+export const Rating = forwardRef(({editable = false, rating, setRating, ...props}: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(Array(5).fill(<Fragment/>))
 
     function constructRating(currentRating: number) {
@@ -41,8 +41,9 @@ export const Rating = ({editable = false, rating, setRating, ...props}: RatingPr
     useEffect(function () {
         constructRating(rating)
     }, [rating])
-    return <div {...props}>
+    return <div {...props} ref={ref}>
         {ratingArray.map((r, index) => <span key={index}>{r}</span>)}
     </div>
-}
+})
 
+Rating.displayName = 'Rating'
