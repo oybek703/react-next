@@ -134,6 +134,12 @@
 	line-height: 19px;
 }
 
+.rateTitle a {
+	cursor: pointer;
+
+	color: var(--primary) !important;
+}
+
 .reviewButton {
 	margin-left: 20px;
 }
@@ -162,22 +168,22 @@
 }
 
 .reviews {
-	margin-bottom: 30px;
 	margin-top: -32px;
+	margin-bottom: 30px;
+
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
 
-.open {
+.close {
 	overflow: hidden;
 
 	max-height: 0;
 	padding: 0;
 }
 
-.close {
-	overflow: visible;
-
+.open {
+	max-height: initial;
 	padding: 30px;
 }
 

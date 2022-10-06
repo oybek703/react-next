@@ -1,4 +1,4 @@
-.reviewForm {
+.review {
 	display: grid;
 	grid-template-columns: [start] auto 1fr auto auto [end];
 
@@ -24,7 +24,7 @@
 }
 
 @media screen and (max-width: 860px) {
-	.reviewForm {
+	.review {
 		grid-template-columns: [start] 30px [titlestart] auto [ratingstart] 1fr [end];
 	}
 

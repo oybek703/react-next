@@ -23,9 +23,7 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
             <Tag size="medium" color="grey">{products?.length}</Tag>
             <Sort sort={sort} setSort={setSort}/>
         </div>
-        <div>
-            {sortedProducts?.map(p => <Product product={p} key={p._id}/>)}
-        </div>
+        {sortedProducts?.map(p => <Product product={p} key={p._id}/>)}
         <div className={styles.hhTitle}>
             <HTag tag='h2'>Вакансии - {page.category}</HTag>
             <Tag color="red">hh.ru</Tag>
