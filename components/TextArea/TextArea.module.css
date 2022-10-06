@@ -1,4 +1,9 @@
+.textAreaWrapper {
+	position: relative;
+}
+
 .textArea {
+	width: 100%;
 	padding: 7px 12px;
 
 	color: var(--black);
@@ -18,4 +23,16 @@
 
 .textArea::placeholder {
 	color: var(--gray);
+}
+
+.error {
+	outline-color: var(--red);
+}
+
+.errorMessage {
+	position: relative;
+	bottom: -5px;
+	left: 0;
+
+	color: var(--red);
 }

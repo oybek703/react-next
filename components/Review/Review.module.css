@@ -35,9 +35,13 @@
 	.date {
 		grid-column: start / ratingstart;
 	}
+
+	.description {
+		grid-column: start / end;
+	}
 }
 
-@media screen and (max-width: 360px){
+@media screen and (max-width: 360px) {
 	.date {
 		grid-column: start / end;
 	}

@@ -3,6 +3,4 @@ export interface IReviewForm {
     title: string
     description: string
     rating: number
-    testField: string
-
 }
