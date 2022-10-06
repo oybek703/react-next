@@ -6,8 +6,9 @@ import classNames from 'classnames'
 export const Input = ({className, ...props}: InputProps): JSX.Element => {
     return (
         <input
-            type="text"
-               className={classNames(className, styles.input)} {...props}/>
+            className={classNames(className, styles.input)}
+            {...props}
+        />
     )
 }
 
