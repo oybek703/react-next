@@ -31,10 +31,12 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
 
     function scrollToReview() {
         setReviewsOpen(true)
-        reviewRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        })
+        setTimeout(function () {
+            reviewRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            })
+        }, 0)
     }
 
     return (
@@ -102,11 +104,12 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                     </Button>
                 </div>
             </Card>
-            <motion.div variants={variants}
-                        initial='hidden' animate={reviewsOpen ? 'visible': 'hidden'}>
-                <Card ref={reviewRef} color="blue" className={classNames(styles.reviews)}>
-                    {product.reviews.map(review => <Review key={review._id} review={review}/>)}
-                    <Divider/>
+            <motion.div variants={variants} initial='hidden' animate={reviewsOpen ? 'visible': 'hidden'}>
+                <Card ref={reviewRef} color='blue' className={styles.reviews}>
+                    {product.reviews.map(review => <div key={review._id}>
+                        <Review review={review}/>
+                        <Divider/>
+                    </div>)}
                     <ReviewForm productId={product._id}/>
                 </Card>
             </motion.div>
