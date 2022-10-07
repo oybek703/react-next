@@ -13,7 +13,7 @@ import {Review} from '../Review/Review'
 import {ReviewForm} from '../ReviewForm/ReviewForm'
 import {motion} from 'framer-motion'
 
-export const Product = forwardRef(({product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Product = motion(forwardRef(({product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [reviewsOpen, setReviewsOpen] = useState<boolean>(false)
 
     const reviewRef = useRef<HTMLDivElement>(null)
@@ -37,82 +37,82 @@ export const Product = forwardRef(({product, className, ...props }: ProductProps
         })
     }
 
-    return <motion.div variants={variants} layout>
-        <div className={className} {...props} ref={ref}></div>
-        <Card className={classNames(styles.product)}>
-            <div className={styles.logo}>
-                <Image
-                    width={70}
-                    height={70}
-                    src={`${process.env.NEXT_PUBLIC_DOMAIN}${product.image}`}
-                    alt={product.title}/>
-            </div>
-            <div className={styles.title}>{product.title}</div>
-            <div className={styles.price}>
-                <span>{priceRu(product.price)}</span>
-                {product.oldPrice && <Tag color="green" size="small" className={styles.oldPrice}>
-                    {priceRu(product.price - product.oldPrice)}
-                </Tag>}
-            </div>
-            <div className={styles.credit}>
-                {priceRu(product.credit)}/<span className={styles.month}>мес</span>
-            </div>
-            <div className={styles.rating}>
-                <Rating rating={product.reviewAvg ?? product.initialRating}/>
-            </div>
-            <div className={styles.tags}>
-                {product.categories.map(category => <Tag size="small" key={category} color="ghost">{category}</Tag>)}
-            </div>
-            <div className={styles.priceTitle}>цена</div>
-            <div className={styles.creditTitle}>кредит</div>
-            <div className={styles.rateTitle}>
-                <a onClick={scrollToReview}>
-                    {product.reviewCount} &nbsp;
-                    {decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
-                </a>
-            </div>
-            <Divider className={styles.hr}/>
-            <div className={styles.description}>{product.description}</div>
-            <div className={styles.feature}>
-                {product.characteristics.map(characteristic => (<div
-                    key={characteristic.name} className={styles.characteristics}>
-                    <span className={styles.characteristicsName}>{characteristic.name}</span>
-                    <span className={styles.characteristicsDots}/>
-                    <span className={styles.characteristicsValue}>{characteristic.value}</span>
-                </div>))}
-            </div>
-            <div className={styles.advBlock}>
-                {product.advantages && <div className={styles.advantages}>
-                  <div className={styles.advTitle}>Преимущества</div>
-                  <div>{product.advantages}</div>
-                </div>}
-                {product.disadvantages && <div className={styles.disadvantages}>
-                  <div className={styles.advTitle}>Недостатки</div>
-                  <div>{product.disadvantages}</div>
-                </div>}
-            </div>
-            <Divider className={classNames(styles.hr, styles.hr2)}/>
-            <div className={styles.actions}>
-                <Button appereance="primary">Узнать подробнее</Button>
-                <Button appereance="ghost"
-                        arrow={reviewsOpen ? 'down' : 'right'}
-                        className={styles.reviewButton}
-                        onClick={() => setReviewsOpen(!reviewsOpen)}>
-                    Читать отзывы
-                </Button>
-            </div>
-        </Card>
-        <motion.div variants={variants}
-                    initial={reviewsOpen ? 'visible': 'hidden'}
-                    animate={reviewsOpen ? 'visible': 'hidden'}>
-            <Card color="blue" className={classNames(styles.reviews)} ref={reviewRef}>
-                {product.reviews.map(review => <Review key={review._id} review={review}/>)}
-                <Divider/>
-                <ReviewForm productId={product._id}/>
+    return (
+        <div className={className} {...props} ref={ref}>
+            <Card className={classNames(styles.product)}>
+                <div className={styles.logo}>
+                    <Image
+                        width={70}
+                        height={70}
+                        src={`${process.env.NEXT_PUBLIC_DOMAIN}${product.image}`}
+                        alt={product.title}/>
+                </div>
+                <div className={styles.title}>{product.title}</div>
+                <div className={styles.price}>
+                    <span>{priceRu(product.price)}</span>
+                    {product.oldPrice && <Tag color="green" size="small" className={styles.oldPrice}>
+                        {priceRu(product.price - product.oldPrice)}
+                    </Tag>}
+                </div>
+                <div className={styles.credit}>
+                    {priceRu(product.credit)}/<span className={styles.month}>мес</span>
+                </div>
+                <div className={styles.rating}>
+                    <Rating rating={product.reviewAvg ?? product.initialRating}/>
+                </div>
+                <div className={styles.tags}>
+                    {product.categories.map(category => <Tag size="small" key={category} color="ghost">{category}</Tag>)}
+                </div>
+                <div className={styles.priceTitle}>цена</div>
+                <div className={styles.creditTitle}>кредит</div>
+                <div className={styles.rateTitle}>
+                    <a onClick={scrollToReview}>
+                        {product.reviewCount} &nbsp;
+                        {decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+                    </a>
+                </div>
+                <Divider className={styles.hr}/>
+                <div className={styles.description}>{product.description}</div>
+                <div className={styles.feature}>
+                    {product.characteristics.map(characteristic => (<div
+                        key={characteristic.name} className={styles.characteristics}>
+                        <span className={styles.characteristicsName}>{characteristic.name}</span>
+                        <span className={styles.characteristicsDots}/>
+                        <span className={styles.characteristicsValue}>{characteristic.value}</span>
+                    </div>))}
+                </div>
+                <div className={styles.advBlock}>
+                    {product.advantages && <div className={styles.advantages}>
+                      <div className={styles.advTitle}>Преимущества</div>
+                      <div>{product.advantages}</div>
+                    </div>}
+                    {product.disadvantages && <div className={styles.disadvantages}>
+                      <div className={styles.advTitle}>Недостатки</div>
+                      <div>{product.disadvantages}</div>
+                    </div>}
+                </div>
+                <Divider className={classNames(styles.hr, styles.hr2)}/>
+                <div className={styles.actions}>
+                    <Button appereance="primary">Узнать подробнее</Button>
+                    <Button appereance="ghost"
+                            arrow={reviewsOpen ? 'down' : 'right'}
+                            className={styles.reviewButton}
+                            onClick={() => setReviewsOpen(!reviewsOpen)}>
+                        Читать отзывы
+                    </Button>
+                </div>
             </Card>
-        </motion.div>
-    </motion.div>
-})
+            <motion.div variants={variants}
+                        initial='hidden' animate={reviewsOpen ? 'visible': 'hidden'}>
+                <Card ref={reviewRef} color="blue" className={classNames(styles.reviews)}>
+                    {product.reviews.map(review => <Review key={review._id} review={review}/>)}
+                    <Divider/>
+                    <ReviewForm productId={product._id}/>
+                </Card>
+            </motion.div>
+        </div>
+    )
+}))
 
 Product.displayName = 'Product'
 
