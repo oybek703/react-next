@@ -6,7 +6,7 @@ import Head from 'next/head'
 function MyApp({Component, pageProps}: AppProps) {
     return <Fragment>
         <Head>
-            <title>Informational App</title>
+            <title>YOTopC - informational App</title>
         </Head>
         <Component {...pageProps} />
     </Fragment>

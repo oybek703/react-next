@@ -1,11 +1,10 @@
 import React, {useEffect, useReducer} from 'react'
 import {TopPageProps} from './TopPage.props'
 import styles from './TopPage.module.css'
-import {Advantages, HhData, HTag, Product, Sort, Tag, Up} from '../../components'
+import {Advantages, HhData, HTag, Product, Sort, Tag} from '../../components'
 import {TopLevelCategory} from '../../interfaces/page.interface'
 import {SortEnum} from '../../components/Sort/Sort.props'
 import {sortReducer} from '../../components/Sort/sortReducer'
-import {useScrollY} from '../../hooks/useScrollY'
 
 export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Element => {
     const [{sort, products: sortedProducts}, dispatchSort] = useReducer(
@@ -15,7 +14,6 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
             products: products.sort((a, b) => b.initialRating - a.initialRating)
         }
     )
-    const y = useScrollY()
     useEffect(() => {
         dispatchSort({type: 'RESET', payload: {sort: sort, products: products}})
         // eslint-disable-next-line
@@ -27,7 +25,6 @@ export const TopPage = ({products, page, firstCategory}: TopPageProps): JSX.Elem
 
     return <div className={styles.wrapper}>
         <div className={styles.title}>
-            <Up/>
             <HTag tag={'h1'}>{page.title}</HTag>
             <Tag size="medium" color="grey">{products?.length}</Tag>
             <Sort sort={sort} setSort={setSort}/>

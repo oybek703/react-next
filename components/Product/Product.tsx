@@ -16,6 +16,7 @@ import {motion} from 'framer-motion'
 export const Product = motion(forwardRef(({product, className, ...props}: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [reviewsOpen, setReviewsOpen] = useState<boolean>(false)
     const reviewRef = useRef<HTMLDivElement>(null)
+
     function scrollToReview() {
         setReviewsOpen(true)
         reviewRef.current?.scrollIntoView({
@@ -88,7 +89,7 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
                 </Button>
             </div>
         </Card>
-        <Card color="blue" className={classNames(styles.reviews, {
+        <Card layout color="blue" className={classNames(styles.reviews, {
             [styles.open]: reviewsOpen,
             [styles.close]: !reviewsOpen
         })} ref={reviewRef}>
