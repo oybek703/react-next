@@ -1,4 +1,4 @@
-import React, {Fragment, useRef, useState} from 'react'
+import React, {ForwardedRef, forwardRef, useRef, useState} from 'react'
 import {ProductProps} from './Product.props'
 import styles from './Product.module.css'
 import classNames from 'classnames'
@@ -11,11 +11,11 @@ import {Divider} from '../Divider/Divider'
 import Image from 'next/image'
 import {Review} from '../Review/Review'
 import {ReviewForm} from '../ReviewForm/ReviewForm'
+import {motion} from 'framer-motion'
 
-export const Product = ({product}: ProductProps): JSX.Element => {
+export const Product = motion(forwardRef(({product, className, ...props}: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [reviewsOpen, setReviewsOpen] = useState<boolean>(false)
     const reviewRef = useRef<HTMLDivElement>(null)
-
     function scrollToReview() {
         setReviewsOpen(true)
         reviewRef.current?.scrollIntoView({
@@ -24,7 +24,7 @@ export const Product = ({product}: ProductProps): JSX.Element => {
         })
     }
 
-    return <Fragment>
+    return <div className={className} {...props} ref={ref}>
         <Card className={classNames(styles.product)}>
             <div className={styles.logo}>
                 <Image
@@ -96,6 +96,8 @@ export const Product = ({product}: ProductProps): JSX.Element => {
             <Divider/>
             <ReviewForm productId={product._id}/>
         </Card>
-    </Fragment>
-}
+    </div>
+}))
+
+Product.displayName = 'Product'
 
