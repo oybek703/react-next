@@ -1,7 +1,7 @@
 .product {
 	display: grid;
 
-	margin-bottom: 31px;
+	margin-top: 30px;
 	padding: 30px;
 	grid-template-columns:
 		[start] 70px [logoend] 30px [titlestart]
@@ -168,23 +168,12 @@
 }
 
 .reviews {
-	margin-top: -32px;
-	margin-bottom: 30px;
+	overflow: hidden;
+
+	padding: 30px;
 
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-}
-
-.close {
-	overflow: hidden;
-
-	max-height: 0;
-	padding: 0;
-}
-
-.open {
-	max-height: initial;
-	padding: 30px;
 }
 
 @media screen and (max-width: 1320px) {

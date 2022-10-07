@@ -13,9 +13,21 @@ import {Review} from '../Review/Review'
 import {ReviewForm} from '../ReviewForm/ReviewForm'
 import {motion} from 'framer-motion'
 
-export const Product = motion(forwardRef(({product, className, ...props}: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Product = forwardRef(({product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [reviewsOpen, setReviewsOpen] = useState<boolean>(false)
+
     const reviewRef = useRef<HTMLDivElement>(null)
+
+    const variants = {
+        visible: {
+            opacity: 1,
+            height: 'auto'
+        },
+        hidden: {
+            opacity: 0,
+            height: 0
+        }
+    }
 
     function scrollToReview() {
         setReviewsOpen(true)
@@ -25,7 +37,8 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         })
     }
 
-    return <div className={className} {...props} ref={ref}>
+    return <motion.div variants={variants} layout>
+        <div className={className} {...props} ref={ref}></div>
         <Card className={classNames(styles.product)}>
             <div className={styles.logo}>
                 <Image
@@ -89,16 +102,17 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
                 </Button>
             </div>
         </Card>
-        <Card layout color="blue" className={classNames(styles.reviews, {
-            [styles.open]: reviewsOpen,
-            [styles.close]: !reviewsOpen
-        })} ref={reviewRef}>
-            {product.reviews.map(review => <Review key={review._id} review={review}/>)}
-            <Divider/>
-            <ReviewForm productId={product._id}/>
-        </Card>
-    </div>
-}))
+        <motion.div variants={variants}
+                    initial={reviewsOpen ? 'visible': 'hidden'}
+                    animate={reviewsOpen ? 'visible': 'hidden'}>
+            <Card color="blue" className={classNames(styles.reviews)} ref={reviewRef}>
+                {product.reviews.map(review => <Review key={review._id} review={review}/>)}
+                <Divider/>
+                <ReviewForm productId={product._id}/>
+            </Card>
+        </motion.div>
+    </motion.div>
+})
 
 Product.displayName = 'Product'
 
