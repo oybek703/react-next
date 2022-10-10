@@ -29,7 +29,7 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
         }
     }
 
-    function scrollToReview() {
+    function handleScrollToReview() {
         setReviewsOpen(true)
         setTimeout(function () {
             reviewRef.current?.scrollIntoView({
@@ -37,6 +37,7 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                 block: 'start'
             })
         }, 0)
+        reviewRef.current?.focus()
     }
 
     return (
@@ -52,7 +53,7 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                 <div className={styles.title}>{product.title}</div>
                 <div className={styles.price}>
                     <span>{priceRu(product.price)}</span>
-                    {product.oldPrice && <Tag color="green" size="small" className={styles.oldPrice}>
+                    {product.oldPrice && <Tag color='green' size='small' className={styles.oldPrice}>
                         {priceRu(product.price - product.oldPrice)}
                     </Tag>}
                 </div>
@@ -63,12 +64,12 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                     <Rating rating={product.reviewAvg ?? product.initialRating}/>
                 </div>
                 <div className={styles.tags}>
-                    {product.categories.map(category => <Tag size="small" key={category} color="ghost">{category}</Tag>)}
+                    {product.categories.map(category => <Tag size='small' key={category} color='ghost'>{category}</Tag>)}
                 </div>
                 <div className={styles.priceTitle}>цена</div>
                 <div className={styles.creditTitle}>кредит</div>
                 <div className={styles.rateTitle}>
-                    <a onClick={scrollToReview}>
+                    <a href='#ref' tabIndex={0} onClick={handleScrollToReview}>
                         {product.reviewCount} &nbsp;
                         {decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
                     </a>
@@ -95,8 +96,8 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                 </div>
                 <Divider className={classNames(styles.hr, styles.hr2)}/>
                 <div className={styles.actions}>
-                    <Button appereance="primary">Узнать подробнее</Button>
-                    <Button appereance="ghost"
+                    <Button appereance='primary'>Узнать подробнее</Button>
+                    <Button appereance='ghost'
                             arrow={reviewsOpen ? 'down' : 'right'}
                             className={styles.reviewButton}
                             onClick={() => setReviewsOpen(!reviewsOpen)}>
@@ -105,7 +106,7 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                 </div>
             </Card>
             <motion.div variants={variants} initial='hidden' animate={reviewsOpen ? 'visible': 'hidden'}>
-                <Card ref={reviewRef} color='blue' className={styles.reviews}>
+                <Card ref={reviewRef} color='blue' className={styles.reviews} tabIndex={0}>
                     {product.reviews.map(review => <div key={review._id}>
                         <Review review={review}/>
                         <Divider/>

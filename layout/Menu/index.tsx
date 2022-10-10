@@ -61,14 +61,12 @@ export const Menu = (): JSX.Element => {
             </>
         )
     }
-
     const handleSecondLevelKeyDown = (event: KeyboardEvent<HTMLDivElement>, secondCategory: string) => {
         if (event.code === 'Space' || event.code === 'Enter') {
             event.preventDefault()
             setSecondLevel(secondCategory)
         }
     }
-
     const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
         return (
             <div className={styles.secondBlock}>
