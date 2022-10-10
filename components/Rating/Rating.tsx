@@ -4,7 +4,7 @@ import StarIcon from './star.svg'
 import styles from './Rating.module.css'
 import classNames from 'classnames'
 
-export const Rating = forwardRef(({editable = false, rating, setRating, error, ...props}: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Rating = forwardRef(({editable = false, rating, setRating, error, tabIndex, ...props}: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(Array(5).fill(<Fragment/>))
     const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([])
 
@@ -29,8 +29,8 @@ export const Rating = forwardRef(({editable = false, rating, setRating, error, .
 
     function computeFocus(rating: number, index: number): number {
         if (!editable) return -1
-        if (!rating && index === 0) return 0
-        if (rating === index + 1) return 0
+        if (!rating && index === 0) return tabIndex ?? 0
+        if (rating === index + 1) return tabIndex ?? 0
         return -1
     }
 
@@ -46,7 +46,6 @@ export const Rating = forwardRef(({editable = false, rating, setRating, error, .
 
     function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
         if (!setRating) return
-        console.log(rating)
         if (event.code === 'ArrowRight' || event.code === 'ArrowUp') {
             event.preventDefault()
             if (!rating) {
@@ -70,7 +69,7 @@ export const Rating = forwardRef(({editable = false, rating, setRating, error, .
 
     useEffect(function () {
         constructRating(rating)
-    }, [rating])
+    }, [rating, tabIndex])
 
     return <div {...props} ref={ref} className={classNames(styles.ratingWrapper, {[styles.error]: error})}>
         {ratingArray.map((r, index) => <span key={index}>{r}</span>)}
