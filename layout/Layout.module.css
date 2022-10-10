@@ -11,6 +11,24 @@
 	grid-template-columns: auto 230px minmax(320px, 1200px) auto;
 }
 
+.skipLink {
+	position: fixed;
+	top: 0;
+	left: 100px;
+
+	display: block;
+	overflow: hidden;
+
+	height: 0;
+
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.skipLinkDisplay {
+	height: auto;
+}
+
 .header {
 	grid-area: header;
 
@@ -19,6 +37,7 @@
 
 .body {
 	grid-area: body;
+	outline: none;
 }
 
 .sidebar {
