@@ -5,6 +5,10 @@
 	margin: 15px 15px 0;
 }
 
+.header svg {
+	fill: var(--primary);
+}
+
 .mobileMenu {
 	position: fixed;
 	z-index: 10;

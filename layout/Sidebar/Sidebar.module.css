@@ -6,4 +6,5 @@
 
 .logo {
 	cursor: pointer;
+	fill: var(--primary);
 }
