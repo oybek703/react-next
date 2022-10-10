@@ -13,6 +13,7 @@ import {Review} from '../Review/Review'
 import {ReviewForm} from '../ReviewForm/ReviewForm'
 import {motion} from 'framer-motion'
 
+// eslint-disable-next-line react/display-name
 export const Product = motion(forwardRef(({product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [reviewsOpen, setReviewsOpen] = useState<boolean>(false)
 
@@ -69,7 +70,7 @@ export const Product = motion(forwardRef(({product, className, ...props }: Produ
                 <div className={styles.priceTitle}>цена</div>
                 <div className={styles.creditTitle}>кредит</div>
                 <div className={styles.rateTitle}>
-                    <a href='#ref' tabIndex={0} onClick={handleScrollToReview}>
+                    <a href='#' tabIndex={0} onClick={handleScrollToReview}>
                         {product.reviewCount} &nbsp;
                         {decOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
                     </a>

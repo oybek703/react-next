@@ -1,4 +1,4 @@
-import React, {useContext, KeyboardEvent} from 'react'
+import React, {KeyboardEvent, useContext} from 'react'
 import {AppContext} from '../../context/app.context'
 import {FirstLevelMenuItem, PageItem} from '../../interfaces/menu.interface'
 import styles from './Menu.module.css'
@@ -34,6 +34,8 @@ export const Menu = (): JSX.Element => {
             height: 0
         }
     }
+    const filteredPath = router.asPath.replace(/#.*/g, '')
+    console.log(filteredPath)
     const setSecondLevel = (secondCategory: string) => {
         setMenu && setMenu(menu.map(menuItem => {
             if (menuItem._id.secondCategory === secondCategory) {
@@ -71,7 +73,7 @@ export const Menu = (): JSX.Element => {
         return (
             <div className={styles.secondBlock}>
                 {menu.map(m => {
-                    if (m.pages.map(({alias}) => alias).includes(router.asPath.split('/')[2])) {
+                    if (m.pages.map(({alias}) => alias).includes(filteredPath.split('/')[2])) {
                         m.opened = true
                     }
                     return (
@@ -101,7 +103,7 @@ export const Menu = (): JSX.Element => {
                     <motion.div variants={variantsChildren} key={page._id}>
                         <Link href={`/${route}/${page.alias}`}>
                             <a tabIndex={isRouteOpen ? 0 : -1} className={classNames(styles.thirdLevel, {
-                                [styles.thirdLevelActive]: router.asPath.split('/')[2] === page.alias
+                                [styles.thirdLevelActive]: filteredPath.split('/')[2] === page.alias
                             })}>
                                 {page.category}
                             </a>
