@@ -46,7 +46,7 @@
 	line-height: 27px;
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 610px) {
 	.title {
 		grid-template-columns: auto 1fr;
 	}

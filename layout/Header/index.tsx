@@ -11,9 +11,9 @@ import {useRouter} from 'next/router'
 export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
     const [isMenuOpened, setIsMenuOpenedState] = useState<boolean>(false)
     const router = useRouter()
-    console.log(router.pathname)
+
     useEffect(function () {
-        handleMenuState()
+        setIsMenuOpenedState(false)
     }, [router])
 
     const variants = {
@@ -30,14 +30,10 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
         }
     }
 
-    function handleMenuState() {
-        setIsMenuOpenedState(!isMenuOpened)
-    }
-
     return <div className={classNames(className, styles.header)} {...props}>
         <LogoIcon/>
         <ButtonIcon
-            onClick={handleMenuState}
+            onClick={() => setIsMenuOpenedState(true)}
             appereance="white"
             icon="menu"/>
         <motion.div variants={variants}
@@ -46,7 +42,7 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
                     className={styles.mobileMenu}>
             <Sidebar/>
             <ButtonIcon
-                onClick={handleMenuState}
+                onClick={() => setIsMenuOpenedState(false)}
                 className={styles.closeMenu} appereance="white" icon="close"/>
         </motion.div>
     </div>
