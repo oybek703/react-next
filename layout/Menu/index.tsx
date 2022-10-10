@@ -35,7 +35,6 @@ export const Menu = (): JSX.Element => {
         }
     }
     const filteredPath = router.asPath.replace(/#.*/g, '')
-    console.log(filteredPath)
     const setSecondLevel = (secondCategory: string) => {
         setMenu && setMenu(menu.map(menuItem => {
             if (menuItem._id.secondCategory === secondCategory) {
