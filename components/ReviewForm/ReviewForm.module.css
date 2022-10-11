@@ -59,6 +59,9 @@
 	right: 20px;
 
 	cursor: pointer;
+
+	border: none;
+	background: transparent;
 }
 
 .error path {

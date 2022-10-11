@@ -45,8 +45,8 @@ export const Menu = (): JSX.Element => {
     }
     const buildFirstLevel = () => {
         return (
-            <>
-                {firstLevelMenu.map(firstLevelMenu => (<div key={firstLevelMenu.route}>
+            <ul className={styles.firstLevelBlock}>
+                {firstLevelMenu.map(firstLevelMenu => (<li key={firstLevelMenu.route}>
                     <Link href={`/${firstLevelMenu.route}`}>
                         <a>
                             <div className={classNames(styles.firstLevel, {
@@ -58,8 +58,8 @@ export const Menu = (): JSX.Element => {
                         </a>
                     </Link>
                     {firstLevelMenu.id === firstCategory && buildSecondLevel(firstLevelMenu)}
-                </div>))}
-            </>
+                </li>))}
+            </ul>
         )
     }
     const handleSecondLevelKeyDown = (event: KeyboardEvent<HTMLDivElement>, secondCategory: string) => {
@@ -97,9 +97,9 @@ export const Menu = (): JSX.Element => {
     }
     const buildThirdLevel = (pages: PageItem[], route: string, isRouteOpen: boolean) => {
         return (
-            <>
+            <ul>
                 {pages.map(page =>
-                    <motion.div variants={variantsChildren} key={page._id}>
+                    <motion.li variants={variantsChildren} key={page._id}>
                         <Link href={`/${route}/${page.alias}`}>
                             <a tabIndex={isRouteOpen ? 0 : -1} className={classNames(styles.thirdLevel, {
                                 [styles.thirdLevelActive]: filteredPath.split('/')[2] === page.alias
@@ -107,10 +107,10 @@ export const Menu = (): JSX.Element => {
                                 {page.category}
                             </a>
                         </Link>
-                    </motion.div>
+                    </motion.li>
                 )
                 }
-            </>
+            </ul>
         )
     }
     return <div>
