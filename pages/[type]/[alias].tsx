@@ -8,8 +8,12 @@ import {firstLevelMenu} from '../../helpers'
 import {TopPage} from '../../pageComponents'
 import {API} from '../../helpers/api'
 import Head from 'next/head'
+import {NotFound} from '../404'
 
 function Alias({products, firstCategory, page}: AliasProps): JSX.Element {
+    if (!page || !products) {
+        return <NotFound/>
+    }
     return (
         <>
             <Head>

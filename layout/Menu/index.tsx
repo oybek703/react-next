@@ -71,7 +71,7 @@ export const Menu = (): JSX.Element => {
     const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
         return (
             <div className={styles.secondBlock}>
-                {menu.map(m => {
+                {menu && menu.map(m => {
                     if (m.pages.map(({alias}) => alias).includes(filteredPath.split('/')[2])) {
                         m.opened = true
                     }
