@@ -7,10 +7,18 @@ import {ProductModel} from '../../interfaces/product.interface'
 import {firstLevelMenu} from '../../helpers'
 import {TopPage} from '../../pageComponents'
 import {API} from '../../helpers/api'
+import Head from 'next/head'
 
 function Alias({products, firstCategory, page}: AliasProps): JSX.Element {
     return (
         <>
+            <Head>
+                <title>{page.metaTitle}</title>
+                <meta name='description' content={page.metaDescription} key='description'/>
+                <meta property='og:title' content={page.metaTitle}/>
+                <meta property='og:description' content={page.metaDescription}/>
+                <meta property='og:type' content='article'/>
+            </Head>
             <TopPage firstCategory={firstCategory} page={page} products={products}/>
         </>
     )

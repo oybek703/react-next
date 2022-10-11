@@ -7,6 +7,7 @@ function MyApp({Component, pageProps}: AppProps) {
     return <Fragment>
         <Head>
             <title>YOTopC - informational App</title>
+            <meta property='og:locale' content='ru_RU'/>
         </Head>
         <Component {...pageProps} />
     </Fragment>
