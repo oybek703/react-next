@@ -30,7 +30,7 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
         }
     }
 
-    return <div className={classNames(className, styles.header)} {...props}>
+    return <header className={classNames(className, styles.header)} {...props}>
         <LogoIcon/>
         <ButtonIcon
             onClick={() => setIsMenuOpenedState(true)}
@@ -45,6 +45,6 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
                 onClick={() => setIsMenuOpenedState(false)}
                 className={styles.closeMenu} appereance="white" icon="close"/>
         </motion.div>
-    </div>
+    </header>
 }
 
