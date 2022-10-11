@@ -1,7 +1,7 @@
 FROM node:alpine
 WORKDIR /opt/app
 ADD package.json package.json
-RUN npm install
+RUN npm install --omit=dev
 ADD . .
 ENV NODE_ENV production
 RUN npm run build
