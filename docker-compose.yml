@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: yo-app
+    image: yo-top
     container_name: yo-app-client
     restart: always
     ports:
